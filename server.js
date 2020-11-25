@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const corsPolicy = require('./middleware/cors');
-
+const authMiddleware = require('./middleware/auth');
 /*
  * Inicia o express
  */
@@ -42,8 +42,10 @@ app.get('/', (req, res) => {
 /*
  * Playground de testes!
  */ 
+const authResource = require('./resources/authResource');
 const userResource = require('./resources/userResource');
-app.use('/users', userResource);
+app.use('/auth', authResource);
+app.use('/users', authMiddleware, userResource);
 
 /*
  * Roda o express

@@ -7,6 +7,11 @@ const userService = {
         return userTmp;
     },
 
+    findAll: async (skip, limit) => {
+        const allUsers = await user.find().skip(skip).limit(limit);
+        return allUsers;
+    },
+
     findById: async ( id ) => {
         const userTmp = await user.findOne({ _id: id });
         return userTmp;
@@ -14,6 +19,11 @@ const userService = {
 
     findByEmail: async ( email ) => {
         const userTmp = await user.findOne({ email: email });
+        return userTmp;
+    },
+
+    findByToken: async ( tokenStr ) => {
+        const userTmp = await user.findOne({ token: tokenStr });
         return userTmp;
     },
 

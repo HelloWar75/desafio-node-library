@@ -1,18 +1,36 @@
 const jwt = require('jsonwebtoken');
+const userService = require('../services/userService');
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
+    
+    const token = req.headers.authorization.split(' ')[1];
+    let decodedToken = null;
+
     try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, '1f15294ef394e3d2874f1bf4159d6750');
-        const userId = decodedToken.userId;
-        if (req.body.userId && req.body.userId !== userId) {
-            throw 'Invalid token or userId!';
-        } else {
-            next();
-        }
-    } catch {
-        res.status(401).json({
-            error: new Error('Invalid request!')
+        decodedToken = jwt.verify(token, '1y72e81gey781g8414y143');
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            error: "Token malformed!"
         });
     }
+    
+    let user = null;
+
+    try {
+        user = await userService.findByToken(token);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            error: error
+        });
+    }
+
+    if( String(user._id).length < 1 )
+        return res.status(401).json({
+            error: "Token not authorized!"
+        });
+    
+    next();
+    
 }
