@@ -3,13 +3,14 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userService = require('../services/userService');
+const { route } = require('./authResource');
 
 const emailRegex = /\S+@\S+/;
 
 /*
  * Listar todos usuários, mas não podemos esquecer da paginação! (só um lembrete)
  */
-router.get('/:page?', async (req, res) => {
+router.get('/all/:page?', async (req, res) => {
     
     let pageNumber = 0;
     let recordsLimit = 5;
@@ -34,8 +35,33 @@ router.get('/:page?', async (req, res) => {
         });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
         data: allUsers,
+    });
+
+});
+
+router.get('/:id', async (req, res) => {
+
+    if( !req.params.id )
+        return res.status(500).json({
+            error: 'Parameter Id is required!'
+        });
+    
+    console.log(req.params.id);
+
+    let user = null;
+
+    try {
+        user = await userService.findById(req.params.id);
+    } catch (error) {
+        return res.status(404).json({
+            error: 'User not found!'
+        });
+    }
+
+    return res.status(200).json({
+        data: user
     });
 
 });

@@ -11,7 +11,7 @@ const app = express();
 /*
  * Conecta ao banco MongoDB
  */
-mongoose.connect('mongodb://127.0.0.1:27017/test?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://admin:12592075@cluster0.vcn5p.mongodb.net/teste?retryWrites=true&w=majority')
     .then(() =>{
         console.log('Connected to MongoDB');
     })
@@ -46,6 +46,7 @@ const authResource = require('./resources/authResource');
 const userResource = require('./resources/userResource');
 app.use('/auth', authResource);
 app.use('/users', authMiddleware, userResource);
+
 
 /*
  * Roda o express

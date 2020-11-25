@@ -3,7 +3,16 @@ const userService = require('../services/userService');
 
 module.exports = async (req, res, next) => {
     
-    const token = req.headers.authorization.split(' ')[1];
+    let token = null;
+    
+    try {
+        token = req.headers.authorization.split(' ')[1];
+    } catch (error) {
+        return res.status(500).json({
+            error: "Token not be null!"
+        });
+    }    
+
     let decodedToken = null;
 
     try {
@@ -26,10 +35,11 @@ module.exports = async (req, res, next) => {
         });
     }
 
-    if( String(user._id).length < 1 )
+    if( user == null )
         return res.status(401).json({
-            error: "Token not authorized!"
+            error: 'Token not authorized!'
         });
+
     
     next();
     

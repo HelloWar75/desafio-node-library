@@ -18,8 +18,8 @@ O objetivo deste teste é apenas para compreender seu raciocínio para resoluç�
   - Salvar livro na lista de favoritos de um usuário
  
 ### Funcionalidades para o Usuário:
-  - Listar os usuários da biblioteca.
-  - Retornar dados de um usuário
+  <s>- Listar os usuários da biblioteca.</s>
+  <s>- Retornar dados de um usuário</s>
   - Salvar, Editar e Excluir.
   <s>- Autenticar usuário</s>
  
