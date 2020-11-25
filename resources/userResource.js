@@ -2,53 +2,53 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const userService = require('../services/userService');
-const user = require('../models/user');
 
 const emailRegex = /\S+@\S+/;
 
 router.post('/singup', async (req, res) => {
 
     /* 
-     * Vai ser passado name, age, phone, email, password
+     * Checando se existem campos que não foram passados
      */ 
     if( !req.body.name )
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Name cannot be null'
         });
     
     if( !req.body.age )
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Age cannot be null'
         });
 
     if( !req.body.phone )
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Phone cannot be null'
         });
     
     if( !req.body.email )
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Email cannot be null'
         });
     
     if( !emailRegex.test(String(req.body.email).toLocaleLowerCase()) )
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Email is invalid!'
         });
 
     if( !req.body.password )
-        res.status(400).json({
+        return res.status(400).json({
             error: 'Password cannot be null'
         });
 
     /*
      * Gerar senha com bcrypt
      */ 
+    let encryptedPassword = "";
     try {
-        let encryptedPassword = await bcrypt.hash(req.body.password, 10);
+        encryptedPassword = await bcrypt.hash(req.body.password, 10);
     } catch (error) {
         console.error(error);
-        res.status(500).json({
+        return res.status(500).json({
             error: error
         });
     }
@@ -65,17 +65,53 @@ router.post('/singup', async (req, res) => {
         await userService.create(remountedJson);
     } catch (error) {
         console.error(error);
-        res.status(500).json({
+        return res.status(500).json({
             error: error
         });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
         message: 'User created!'
     });
     
 });
 
+router.post('/singin', async (req, res) => {
 
+    /*
+     * Checando se existem campos que não foram passados
+     */
+    if( !req.body.email )
+        return res.status(400).json({
+            error: 'Email cannot be null'
+        });
+    
+    if( !emailRegex.test(String(req.body.email).toLocaleLowerCase()) )
+        return res.status(400).json({
+            error: 'Email is invalid!'
+        });
+
+    if( !req.body.password )
+        return res.status(400).json({
+            error: 'Password cannot be null'
+        });
+    
+    let user = null;
+    try {
+        user = await userService.findByEmail(req.body.email);
+    } catch (error) {
+        return res.status(401).json({
+            error: 'User not found!'
+        });
+    }
+
+    if( !bcrypt.compareSync(req.body.password, user.password) )
+        return res.status(401).json({
+            error: 'Incorrect password!'
+        });
+    
+    
+
+});
 
 module.exports = router;

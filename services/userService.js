@@ -2,13 +2,18 @@ const user = require('../models/user');
 
 const userService = {
 
-    create: async (userJson) => {
+    create: async ( userJson ) => {
         const userTmp = user.create(userJson);
         return userTmp;
     },
 
     findById: async ( id ) => {
         const userTmp = await user.findOne({ _id: id });
+        return userTmp;
+    },
+
+    findByEmail: async ( email ) => {
+        const userTmp = await user.findOne({ email: email });
         return userTmp;
     },
 
