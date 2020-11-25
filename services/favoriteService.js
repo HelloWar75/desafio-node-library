@@ -12,6 +12,16 @@ const favoriteService = {
         return favoriteTmp;
     },
 
+    findByUid: async ( uid ) => {
+        const favoriteTmp = await favorite.findOne({ userId: uid });
+        return favoriteTmp;
+    },
+
+    findByBid: async ( bid ) => {
+        const favoriteTmp = await favorite.findOne({ bookId: bid });
+        return favoriteTmp;
+    },
+
     update: async ( id, favoriteJson ) => {
         const updatedfavorite = await favorite.updateOne({ _id: id }, favoriteJson);
         return updatedfavorite;
@@ -33,10 +43,6 @@ const favoriteService = {
         return findOnefavorite;
     },
 
-    findByEsbn13: async ( isbn ) => {
-        const favoriteTmp = await favorite.findOne({ isbn13: isbn });
-        return favoriteTmp;
-    }
 
 };
 
