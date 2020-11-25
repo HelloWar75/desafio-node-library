@@ -21,13 +21,13 @@ O objetivo deste teste é apenas para compreender seu raciocínio para resoluç�
   - Listar os usuários da biblioteca.
   - Retornar dados de um usuário
   - Salvar, Editar e Excluir.
-  - Autenticar usuário
+  <s>- Autenticar usuário</s>
  
 ### Dados mínimos esperados para o Livro: 
-  - Título, ISBN, Categoria, Ano
+  <s>- Título, ISBN, Categoria, Ano</s>
  
 ### Dados mínimos esperados para o Usuário: 
-  - Nome, Idade, Telefone, Email, Senha
+  <s>- Nome, Idade, Telefone, Email, Senha</s>
 
 ## Considerações importantes
   - As funcionalidades para salvar, editar e excluir devem estar protegidas, acessível apenas para usuários autenticados.
