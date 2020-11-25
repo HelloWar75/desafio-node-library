@@ -17,10 +17,10 @@ O objetivo deste teste é apenas para compreender seu raciocínio para resoluç�
   - Salvar, Editar e Excluir.
   - Salvar livro na lista de favoritos de um usuário
  
-### Funcionalidades para o Usuário:
+<s>### Funcionalidades para o Usuário:</s>
   <s>- Listar os usuários da biblioteca.</s>
   <s>- Retornar dados de um usuário</s>
-  - Salvar, Editar e Excluir.
+  <s>- Salvar, Editar e Excluir.</s>
   <s>- Autenticar usuário</s>
  
 ### Dados mínimos esperados para o Livro: 
