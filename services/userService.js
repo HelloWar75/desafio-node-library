@@ -48,11 +48,6 @@ const userService = {
         return findOneuser;
     },
 
-    findByEsbn13: async ( isbn ) => {
-        const userTmp = await user.findOne({ isbn13: isbn });
-        return userTmp;
-    }
-
 };
 
 module.exports = userService;

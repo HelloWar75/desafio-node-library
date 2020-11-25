@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
-const userService = require('../services/userService');
+const bookService = require('../services/bookService');
 
 const emailRegex = /\S+@\S+/;
 
 /*
- * Listar todos usuários, mas não podemos esquecer da paginação! (só um lembrete)
+ * Listar todos livros, mas não podemos esquecer da paginação! (só um lembrete)
  */
 router.get('/all/:page?', async (req, res) => {
     
@@ -21,11 +21,10 @@ router.get('/all/:page?', async (req, res) => {
     if( pageNumber > 0 )
         skip = recordsLimit * ( pageNumber - 1 );
 
-    
-    let allUsers = null;
+    let allBooks = null;
     
     try {
-        allUsers = await userService.findAll(skip, recordsLimit);
+        allBooks = await bookService.findAll(skip, recordsLimit);
     } catch (error) {
         console.error(error);
         return res.status(500).json({
@@ -34,11 +33,13 @@ router.get('/all/:page?', async (req, res) => {
     }
 
     return res.status(200).json({
-        data: allUsers,
+        data: allBooks,
     });
 
 });
-
+/*
+ * Visualizar livro
+ */
 router.get('/:id', async (req, res) => {
 
     if( !req.params.id )
@@ -48,22 +49,24 @@ router.get('/:id', async (req, res) => {
     
     console.log(req.params.id);
 
-    let user = null;
+    let book = null;
 
     try {
-        user = await userService.findById(req.params.id);
+        book = await bookService.findById(req.params.id);
     } catch (error) {
         return res.status(404).json({
-            error: 'User not found!'
+            error: 'Book not found!'
         });
     }
 
     return res.status(200).json({
-        data: user
+        data: book
     });
 
 });
-//rota de update de usuario
+/*
+ * Atualizar livro
+ */
 router.put('/:id', async (req, res) => {
 
     if( !req.params.id )
@@ -77,77 +80,48 @@ router.put('/:id', async (req, res) => {
         });
 
     try {
-        await userService.update(req.params.id, req.body);
+        await bookService.update(req.params.id, req.body);
     } catch (error) {
         return res.status(500).json({
-            error: 'Error in update user!'
+            error: 'Error in update book!'
         });
     }
 
     return res.status(200).json({
-        message: "User updated!"
+        message: "Book updated!"
     });
 
 });
-
+/*
+ * Criar novo livro
+ */
 router.post('/', async (req, res) => {
 
     /* 
      * Checando se existem campos que não foram passados
      */ 
-    if( !req.body.name )
+    if( !req.body.title )
         return res.status(400).json({
-            error: 'Name cannot be null'
+            error: 'Title cannot be null'
         });
     
-    if( !req.body.age )
+    if( !req.body.isbn10 || !req.body.isbn13 )
         return res.status(400).json({
-            error: 'Age cannot be null'
-        });
-
-    if( !req.body.phone )
-        return res.status(400).json({
-            error: 'Phone cannot be null'
+            error: 'ISBN-10 or ISBN-13 cannot be null'
         });
     
-    if( !req.body.email )
+    if( !req.body.category )
         return res.status(400).json({
-            error: 'Email cannot be null'
-        });
-    
-    if( !emailRegex.test(String(req.body.email).toLocaleLowerCase()) )
-        return res.status(400).json({
-            error: 'Email is invalid!'
+            error: 'Category cannot be null'
         });
 
-    if( !req.body.password )
+    if( !req.body.year )
         return res.status(400).json({
-            error: 'Password cannot be null'
+            error: 'Year cannot be null'
         });
-
-    /*
-     * Gerar senha com bcrypt
-     */ 
-    let encryptedPassword = "";
-    try {
-        encryptedPassword = await bcrypt.hash(req.body.password, 10);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            error: error
-        });
-    }
-
-    let remountedJson = {
-        name: req.body.name,
-        age: req.body.age,
-        phone: req.body.phone,
-        email: req.body.email,
-        password: encryptedPassword
-    }
 
     try {
-        await userService.create(remountedJson);
+        await bookService.create(req.body);
     } catch (error) {
         console.error(error);
         return res.status(500).json({
@@ -156,11 +130,13 @@ router.post('/', async (req, res) => {
     }
 
     return res.status(200).json({
-        message: 'User created!'
+        message: 'Book created!'
     });
 
 });
-
+/*
+ * Deletar livro
+ */
 router.delete('/:id', async (req, res) => {
 
     if( !req.params.id )
@@ -170,15 +146,15 @@ router.delete('/:id', async (req, res) => {
     
 
     try {
-        await userService.delete(req.params.id);
+        await bookService.delete(req.params.id);
     } catch (error) {
         return res.status(500).json({
-            error: 'Error in delete user!'
+            error: 'Error in delete book!'
         });
     }
 
     return res.status(200).json({
-        message: "User deleted!"
+        message: "Book deleted!"
     });
 
 });

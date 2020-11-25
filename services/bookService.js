@@ -7,6 +7,11 @@ const bookService = {
         return bookTmp;
     },
 
+    findAll: async (skip, limit) => {
+        const allBooks = await book.find().skip(skip).limit(limit);
+        return allBooks;
+    },
+
     findById: async ( id ) => {
         const bookTmp = await book.findOne({ _id: id });
         return bookTmp;
