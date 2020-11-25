@@ -22,8 +22,6 @@ router.get('/:page?', async (req, res) => {
     if( pageNumber > 0 )
         skip = recordsLimit * ( pageNumber - 1 );
 
-    // if( pageNumber > 0 )
-        
     
     let allUsers = null;
     
