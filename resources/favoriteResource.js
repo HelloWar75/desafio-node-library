@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
 const favoriteService = require('../services/favoriteService');
 const userService = require('../services/userService');
 const bookService = require('../services/bookService');
