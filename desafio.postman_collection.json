@@ -1,0 +1,689 @@
+{
+	"info": {
+		"_postman_id": "a8e61845-31cc-4884-b981-2c0e0eb65895",
+		"name": "Desafio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List all Users without pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDgzOTcsImV4cCI6MTYwNjQzNDc5N30.0moi9iZ0ZhdHBdGK7hq9x6gRarA37M7_IvNu_CDHArU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/all/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all Users With pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTU5NDA1OWFmYTE0YmMxMGEwNTUiLCJpYXQiOjE2MDYzNDYxNDQsImV4cCI6MTYwNjQzMjU0NH0.ozK7jCD97dLItC3PEZQ1Z4W4tJ-qw22cnzexT9dSGr0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/all/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"all",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTU5NDA1OWFmYTE0YmMxMGEwNTUiLCJpYXQiOjE2MDYzNDYxNDQsImV4cCI6MTYwNjQzMjU0NH0.ozK7jCD97dLItC3PEZQ1Z4W4tJ-qw22cnzexT9dSGr0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/5fbe5e7f0e56c857cc4a3894",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"5fbe5e7f0e56c857cc4a3894"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTU5NDA1OWFmYTE0YmMxMGEwNTUiLCJpYXQiOjE2MDYzNDYxNDQsImV4cCI6MTYwNjQzMjU0NH0.ozK7jCD97dLItC3PEZQ1Z4W4tJ-qw22cnzexT9dSGr0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Luis\",\r\n    \"age\": \"21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/5fbe5e7f0e56c857cc4a3894",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"5fbe5e7f0e56c857cc4a3894"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTU5NDA1OWFmYTE0YmMxMGEwNTUiLCJpYXQiOjE2MDYzNDYxNDQsImV4cCI6MTYwNjQzMjU0NH0.ozK7jCD97dLItC3PEZQ1Z4W4tJ-qw22cnzexT9dSGr0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Luis 2\",\r\n    \"age\": \"21\",\r\n    \"phone\": \"55519805333001\",\r\n    \"email\": \"luisjustin72@gmail.com\",\r\n    \"password\": \"12592075\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTU5NDA1OWFmYTE0YmMxMGEwNTUiLCJpYXQiOjE2MDYzNDYxNDQsImV4cCI6MTYwNjQzMjU0NH0.ozK7jCD97dLItC3PEZQ1Z4W4tJ-qw22cnzexT9dSGr0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/5fbee594059afa14bc10a055",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"5fbee594059afa14bc10a055"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Singup Route",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Luis 2\",\r\n    \"age\": \"21\",\r\n    \"phone\": \"55519805333001\",\r\n    \"email\": \"luisjustin72@gmail.com\",\r\n    \"password\": \"12592075\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/singup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"singup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Singin Route",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"luisjustin72@gmail.com\",\r\n    \"password\": \"12592075\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/singin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"singin"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "List all books without pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJmMDk4NjhmMjI2YTI5N2MyMGYwZDEiLCJpYXQiOjE2MDYzNTU0NzQsImV4cCI6MTYwNjQ0MTg3NH0.iFy6p3JT6s-e-4qAL6fN_wnQbJ9deXZTYWTN7VrAGd4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/books/all/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"all",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all Books With pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDgzOTcsImV4cCI6MTYwNjQzNDc5N30.0moi9iZ0ZhdHBdGK7hq9x6gRarA37M7_IvNu_CDHArU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/books/all/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"all",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get one book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDY2NzQsImV4cCI6MTYwNjQzMzA3NH0.63WSeZyj2CAWnSr7YAlNyITECoBey76XiNDv-FuKwX0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/books/5fbee976276be82358aac9b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"5fbee976276be82358aac9b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDY2NzQsImV4cCI6MTYwNjQzMzA3NH0.63WSeZyj2CAWnSr7YAlNyITECoBey76XiNDv-FuKwX0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Livro 2\",\r\n    \"category\": \"Anormal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/books/5fbee976276be82358aac9b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"5fbee976276be82358aac9b4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDgzOTcsImV4cCI6MTYwNjQzNDc5N30.0moi9iZ0ZhdHBdGK7hq9x6gRarA37M7_IvNu_CDHArU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Livro 2\",\r\n    \"isbn10\": \"1231313123\",\r\n    \"isbn13\": \"12312313131313123\",\r\n    \"category\": \"Normal\",\r\n    \"year\": \"2020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/books/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDY2NzQsImV4cCI6MTYwNjQzMzA3NH0.63WSeZyj2CAWnSr7YAlNyITECoBey76XiNDv-FuKwX0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/books/5fbee976276be82358aac9b4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"books",
+								"5fbee976276be82358aac9b4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Favorites",
+			"item": [
+				{
+					"name": "List all Favorites With pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDgzOTcsImV4cCI6MTYwNjQzNDc5N30.0moi9iZ0ZhdHBdGK7hq9x6gRarA37M7_IvNu_CDHArU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/favorites/all/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"favorites",
+								"all",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all Favorites Without pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDgzOTcsImV4cCI6MTYwNjQzNDc5N30.0moi9iZ0ZhdHBdGK7hq9x6gRarA37M7_IvNu_CDHArU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/favorites/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"favorites",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all Favorites By User Without pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJmMDk4NjhmMjI2YTI5N2MyMGYwZDEiLCJpYXQiOjE2MDYzNTU0NzQsImV4cCI6MTYwNjQ0MTg3NH0.iFy6p3JT6s-e-4qAL6fN_wnQbJ9deXZTYWTN7VrAGd4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/favorites/all/by/user/5fbee58b059afa14bc10a054",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"favorites",
+								"all",
+								"by",
+								"user",
+								"5fbee58b059afa14bc10a054"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all Favorites By User With pagination Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDgzOTcsImV4cCI6MTYwNjQzNDc5N30.0moi9iZ0ZhdHBdGK7hq9x6gRarA37M7_IvNu_CDHArU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/favorites/all/by/user/5fbee58b059afa14bc10a054/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"favorites",
+								"all",
+								"by",
+								"user",
+								"5fbee58b059afa14bc10a054",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Favorite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDgzOTcsImV4cCI6MTYwNjQzNDc5N30.0moi9iZ0ZhdHBdGK7hq9x6gRarA37M7_IvNu_CDHArU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"bookId\": \"5fbeef9022b571121c944f83\",\r\n    \"userId\": \"5fbee58b059afa14bc10a054\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/favorites/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"favorites",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Favorite",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZmJlZTdhYzljNzY4NTJjMzA5ZDQ0NjciLCJpYXQiOjE2MDYzNDgzOTcsImV4cCI6MTYwNjQzNDc5N30.0moi9iZ0ZhdHBdGK7hq9x6gRarA37M7_IvNu_CDHArU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/favorites/5fbeefa122b571121c944f84",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"favorites",
+								"5fbeefa122b571121c944f84"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
