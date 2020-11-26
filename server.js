@@ -44,8 +44,12 @@ app.get('/', (req, res) => {
  */ 
 const authResource = require('./resources/authResource');
 const userResource = require('./resources/userResource');
+const bookResource = require('./resources/bookResource');
+const favoriteResource = require('./resources/favoriteResource');
 app.use('/auth', authResource);
 app.use('/users', authMiddleware, userResource);
+app.use('/books', authMiddleware, bookResource);
+app.use('/favorites', authMiddleware, favoriteResource);
 
 
 /*

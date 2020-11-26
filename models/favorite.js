@@ -3,14 +3,8 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const favoriteSchema = mongoose.Schema({
 
-    bookId: {
-        type: String,
-        required: true
-    },
-    userId: {
-        type: String,
-        required: true
-    }
+    bookId: {type: mongoose.Schema.Types.ObjectId, ref: 'Book'},
+    userId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 
 });
 

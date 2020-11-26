@@ -58,6 +58,11 @@ router.get('/:id', async (req, res) => {
         });
     }
 
+    if( user == null )
+        return res.status(404).json({
+            error: 'User not found!'
+        });
+
     return res.status(200).json({
         data: user
     });
@@ -74,6 +79,21 @@ router.put('/:id', async (req, res) => {
     if( !req.body )
         return res.status(500).json({
             error: 'Body is necessary!'
+        });
+
+    let user = null;
+
+    try {
+        user = await userService.findById(req.params.id);
+    } catch (error) {
+        return res.status(404).json({
+            error: 'User not found!'
+        });
+    }
+    
+    if( user == null )
+        return res.status(404).json({
+            error: 'User not found!'
         });
 
     try {
@@ -168,6 +188,20 @@ router.delete('/:id', async (req, res) => {
             error: 'Parameter Id is required!'
         });
     
+        let user = null;
+
+    try {
+        user = await userService.findById(req.params.id);
+    } catch (error) {
+        return res.status(404).json({
+            error: 'User not found!'
+        });
+    }
+        
+    if( user == null )
+        return res.status(404).json({
+            error: 'User not found!'
+        });
 
     try {
         await userService.delete(req.params.id);
@@ -182,5 +216,6 @@ router.delete('/:id', async (req, res) => {
     });
 
 });
+
 
 module.exports = router;

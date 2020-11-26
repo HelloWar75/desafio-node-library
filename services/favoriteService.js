@@ -7,6 +7,16 @@ const favoriteService = {
         return favoriteTmp;
     },
 
+    findAll: async (skip, limit) => {
+        const allFavorites = await favorite.find().populate('bookId').populate('userId').skip(skip).limit(limit);
+        return allFavorites;
+    },
+
+    findAllByUserId: async (skip, limit, uid) => {
+        const allFavorites = await favorite.find({ userId: uid }).populate('bookId').populate('userId').skip(skip).limit(limit);
+        return allFavorites;
+    },
+
     findById: async ( id ) => {
         const favoriteTmp = await favorite.findOne({ _id: id });
         return favoriteTmp;

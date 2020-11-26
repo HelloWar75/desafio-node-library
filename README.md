@@ -12,9 +12,9 @@ O objetivo deste teste é apenas para compreender seu raciocínio para resoluç�
   - Considere atender pelo menos os seguintes requisitos:
   
 ### Funcionalidades para Livros:
-  - Listar todos livros disponíveis
-  - Retornar dados de um livro
-  - Salvar, Editar e Excluir.
+  <s>- Listar todos livros disponíveis</s>
+  <s>- Retornar dados de um livro</s>
+  <s>- Salvar, Editar e Excluir.</s>
   - Salvar livro na lista de favoritos de um usuário
  
 <s>### Funcionalidades para o Usuário:</s>

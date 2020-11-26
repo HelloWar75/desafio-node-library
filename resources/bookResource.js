@@ -3,10 +3,8 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const bookService = require('../services/bookService');
 
-const emailRegex = /\S+@\S+/;
-
 /*
- * Listar todos livros, mas não podemos esquecer da paginação! (só um lembrete)
+ * Listar todos usuários, mas não podemos esquecer da paginação! (só um lembrete)
  */
 router.get('/all/:page?', async (req, res) => {
     
@@ -21,10 +19,11 @@ router.get('/all/:page?', async (req, res) => {
     if( pageNumber > 0 )
         skip = recordsLimit * ( pageNumber - 1 );
 
-    let allBooks = null;
+    
+    let allbooks = null;
     
     try {
-        allBooks = await bookService.findAll(skip, recordsLimit);
+        allbooks = await bookService.findAll(skip, recordsLimit);
     } catch (error) {
         console.error(error);
         return res.status(500).json({
@@ -33,13 +32,11 @@ router.get('/all/:page?', async (req, res) => {
     }
 
     return res.status(200).json({
-        data: allBooks,
+        data: allbooks,
     });
 
 });
-/*
- * Visualizar livro
- */
+
 router.get('/:id', async (req, res) => {
 
     if( !req.params.id )
@@ -55,18 +52,21 @@ router.get('/:id', async (req, res) => {
         book = await bookService.findById(req.params.id);
     } catch (error) {
         return res.status(404).json({
-            error: 'Book not found!'
+            error: 'book not found!'
         });
     }
+
+    if( book == null )
+        return res.status(404).json({
+            error: 'book not found!'
+        });
 
     return res.status(200).json({
         data: book
     });
 
 });
-/*
- * Atualizar livro
- */
+//rota de update de usuario
 router.put('/:id', async (req, res) => {
 
     if( !req.params.id )
@@ -79,6 +79,21 @@ router.put('/:id', async (req, res) => {
             error: 'Body is necessary!'
         });
 
+    let book = null;
+
+    try {
+        book = await bookService.findById(req.params.id);
+    } catch (error) {
+        return res.status(404).json({
+            error: 'book not found!'
+        });
+    }
+    
+    if( book == null )
+        return res.status(404).json({
+            error: 'book not found!'
+        });
+
     try {
         await bookService.update(req.params.id, req.body);
     } catch (error) {
@@ -88,13 +103,11 @@ router.put('/:id', async (req, res) => {
     }
 
     return res.status(200).json({
-        message: "Book updated!"
+        message: "book updated!"
     });
 
 });
-/*
- * Criar novo livro
- */
+
 router.post('/', async (req, res) => {
 
     /* 
@@ -109,17 +122,18 @@ router.post('/', async (req, res) => {
         return res.status(400).json({
             error: 'ISBN-10 or ISBN-13 cannot be null'
         });
-    
+
     if( !req.body.category )
         return res.status(400).json({
             error: 'Category cannot be null'
         });
-
+    
     if( !req.body.year )
         return res.status(400).json({
             error: 'Year cannot be null'
         });
 
+    
     try {
         await bookService.create(req.body);
     } catch (error) {
@@ -130,13 +144,11 @@ router.post('/', async (req, res) => {
     }
 
     return res.status(200).json({
-        message: 'Book created!'
+        message: 'book created!'
     });
 
 });
-/*
- * Deletar livro
- */
+
 router.delete('/:id', async (req, res) => {
 
     if( !req.params.id )
@@ -144,6 +156,20 @@ router.delete('/:id', async (req, res) => {
             error: 'Parameter Id is required!'
         });
     
+        let book = null;
+
+    try {
+        book = await bookService.findById(req.params.id);
+    } catch (error) {
+        return res.status(404).json({
+            error: 'book not found!'
+        });
+    }
+        
+    if( book == null )
+        return res.status(404).json({
+            error: 'book not found!'
+        });
 
     try {
         await bookService.delete(req.params.id);
@@ -154,7 +180,7 @@ router.delete('/:id', async (req, res) => {
     }
 
     return res.status(200).json({
-        message: "Book deleted!"
+        message: "book deleted!"
     });
 
 });

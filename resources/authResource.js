@@ -98,6 +98,7 @@ router.post('/singin', async (req, res) => {
         });
     
     let user = null;
+
     try {
         user = await userService.findByEmail(req.body.email);
     } catch (error) {
@@ -105,6 +106,11 @@ router.post('/singin', async (req, res) => {
             error: 'User not found!'
         });
     }
+
+    if( user == null )
+        return res.status(401).json({
+            error: 'User not found!'
+        });
 
     if( !bcrypt.compareSync(req.body.password, user.password) )
         return res.status(401).json({
